@@ -1,0 +1,13 @@
+*.log
+**/*.iml
+**/*target
+**/*.idea
+*.iml
+.idea/
+target/
+.logs/
+*.xlsx
+.allure/
+allure-results/
+*.jpeg
+*.mp4
