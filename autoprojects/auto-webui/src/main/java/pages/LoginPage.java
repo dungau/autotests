@@ -1,4 +1,4 @@
-package sites.pages;
+package pages;
 
 import entities.Users;
 import io.qameta.allure.Step;
