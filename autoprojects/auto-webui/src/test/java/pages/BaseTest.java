@@ -1,32 +1,39 @@
+package pages;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
+import logs.BaseLog;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.*;
-import sites.SwagLabsPage;
 
 public class BaseTest {
     protected static WebDriver driver;
 
     @BeforeSuite(alwaysRun = true)
     public void setUp() {
-        System.out.println("start suite");
+        BaseLog.info("Test suite start");
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
-        PageFactory.initElements(driver, SwagLabsPage.class);
     }
 
     @AfterSuite
     public void teardown() {
         if(null != driver) {
-            driver.close();
             driver.quit();
         }
+        BaseLog.info("Test suite end");
     }
 
     @BeforeClass
-    public void openSite() {
+    public void beforeClass() {
+        BaseLog.info("Test class start");
         driver.get("https://parabank.parasoft.com/parabank/index.htm");
         driver.manage().window().maximize(); //maximize the window
+    }
+
+    @AfterClass
+    public void afterClass() {
+        driver.close();
+        BaseLog.info("Test class end");
     }
 }

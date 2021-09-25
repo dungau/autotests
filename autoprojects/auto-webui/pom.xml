@@ -12,83 +12,71 @@
     <artifactId>auto-webui</artifactId>
 
     <build>
+        <testResources>
+            <testResource>
+                <directory>src/test/java</directory>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </testResource>
+        </testResources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.version}</version>
                 <configuration>
+                    <encoding>UTF-8</encoding>
                     <source>14</source>
                     <target>14</target>
+                    <compilerArgument>-Werror</compilerArgument>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>${jetty.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.10.0</version>
+                <configuration>
+                    <reportVersion>2.13.2</reportVersion>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M5</version>
+                <configuration>
+                    <systemPropertyVariables>
+                        <testng.dtd.http>true</testng.dtd.http>
+                        <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
+                    </systemPropertyVariables>
+                    <argLine>-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"</argLine>
+                    <suiteXmlFiles>
+                        <!--suppress UnresolvedMavenProperty -->
+                        <suiteXmlFile>${suiteXmlFiles}</suiteXmlFile>
+                    </suiteXmlFiles>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>13</maven.compiler.source>
-        <maven.compiler.target>13</maven.compiler.target>
-        <maven.compiler.version>3.6.0</maven.compiler.version>
-        <allure.version>2.10.0</allure.version>
-        <allure.testng>2.15.0</allure.testng>
-        <allure.env>1.0.0</allure.env>
-        <aspectj.version>1.9.7</aspectj.version>
-        <jetty.version>9.4.12.RC2</jetty.version>
-        <logback>1.2.6</logback>
-        <testng>7.4.0</testng>
-        <assertj>3.20.2</assertj>
-        <apache-commons>3.12.0</apache-commons>
-        <coteafs>3.4.0</coteafs>
         <selenium>4.0.0-rc-1</selenium>
         <webdrivermanager>5.0.3</webdrivermanager>
-        <domain>https://www.saucedemo.com/</domain>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>${logback}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>${testng}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.assertj</groupId>
-            <artifactId>assertj-core</artifactId>
-            <version>${assertj}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>${apache-commons}</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-testng</artifactId>
-            <version>${allure.testng}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.automatedowl</groupId>
-            <artifactId>allure-environment-writer</artifactId>
-            <version>${allure.env}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjweaver</artifactId>
-            <version>${aspectj.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>net.masterthought</groupId>
-            <artifactId>cucumber-reporting</artifactId>
-            <version>5.6.0</version>
-            <scope>test</scope>
-        </dependency>
-
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
@@ -99,20 +87,12 @@
             <artifactId>webdrivermanager</artifactId>
             <version>${webdrivermanager}</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-1.2-api</artifactId>
+            <version>2.13.3</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
-
-    <reporting>
-        <excludeDefaults>true</excludeDefaults>
-        <plugins>
-            <plugin>
-                <groupId>io.qameta.allure</groupId>
-                <artifactId>allure-maven</artifactId>
-                <version>2.10.0</version>
-                <configuration>
-                    <reportVersion>2.13.2</reportVersion>
-                </configuration>
-            </plugin>
-        </plugins>
-    </reporting>
 
 </project>

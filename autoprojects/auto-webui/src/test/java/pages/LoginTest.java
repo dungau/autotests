@@ -1,23 +1,31 @@
+package pages;
+
 import entities.Users;
 import static org.testng.Assert.*;
 
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import sites.pages.LoginPage;
+
+import static pages.SwagLabsPage.loginPage;
 
 
 public class LoginTest extends BaseTest {
 
+    private Users user;
+
+    @BeforeTest
+    public void beforeTest() {
+        loginPage = new LoginPage(driver);
+        user = new Users();
+    }
+
     @Test
     public void testLoginWithValidCredentials() {
-        LoginPage loginPage = new LoginPage(driver);
-        Users user = new Users().getDefaultUser();
-        loginPage.loginWithValidCredentials(user);
+        loginPage.loginWithValidCredentials(user.getDefaultUser());
     }
 
     @Test
     public void testLoginWithInvalidCredentials() {
-        LoginPage loginPage = new LoginPage(driver);
-        Users user = new Users();
         String errorMessage = loginPage.loginWithInvalidCredential(user);
         assertEquals(errorMessage, "Please enter a username and password.",
                 "Can not find the error message.");
