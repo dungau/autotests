@@ -1,4 +1,4 @@
-# Automation Project for Selenium WebUI and Rest Assured for API
+# Automation Project for Selenium WebUI and Rest Assured API
 
 auto-api-restassured: module for api tests (RestAssured framework)
 
