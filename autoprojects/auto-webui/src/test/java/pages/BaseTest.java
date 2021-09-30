@@ -1,9 +1,9 @@
 package pages;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import logs.BaseLog;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import static utils.PropertyLoader.*;
+
 import org.testng.annotations.*;
 
 public class BaseTest {
@@ -12,8 +12,7 @@ public class BaseTest {
     @BeforeSuite(alwaysRun = true)
     public void setUp() {
         BaseLog.info("Test suite start");
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+        driver = getDriver();
     }
 
     @AfterSuite
@@ -27,7 +26,7 @@ public class BaseTest {
     @BeforeClass
     public void beforeClass() {
         BaseLog.info("Test class start");
-        driver.get("https://parabank.parasoft.com/parabank/index.htm");
+        driver.get(getDomain());
         driver.manage().window().maximize(); //maximize the window
     }
 
