@@ -1,0 +1,5 @@
+type,firstName,lastName,address,city,state,zipCode,phone,ssn,username,password
+CREATED_USER,John %s,Smith %s,1431 Main St,Beverly Hills,CA,90210,310-447-4121,123,jSmith%s,pwd01
+UPDATED_USER,John %s,Smith %s,1431 Main St,Beverly Hills,CA,9021012,310-447-4121-34,,,
+LOGIN_USER,test,test,test,test,test,123,123,123,test,test01
+INVALID_USER,John,Smith,1431 Main St,Beverly Hills,CA,90210,310-447-4121,,1,1

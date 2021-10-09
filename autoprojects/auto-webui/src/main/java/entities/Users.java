@@ -1,51 +1,69 @@
 package entities;
 
-public class Users implements Cloneable {
+import enums.UserTypes;
+import lombok.*;
+import utils.UserLoader;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+@Builder
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class Users {
 
     private String username;
     private String password;
+    private String firstName;
+    private String lastName;
+    private String address;
+    private String city;
+    private String state;
+    private String zipCode;
+    private String phoneNumber;
+    private String ssn;
 
-    public Users(String username, String password) {
-        this.username = username;
-        this.password = password;
+    private String type;
+
+    // Declare DateTimeFormatter with desired format
+    static DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+    // Save current LocalDateTime into a variable
+    static LocalDateTime localDateTime = LocalDateTime.now();
+
+    //Declare Date for startMovingDate
+    static String startDate = localDateTime.format(dateTimeFormatter);
+
+    // Format LocalDateTime into a String variable and print
+    static DateTimeFormatter  dateTimeFormatterForRandom = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+    static String formattedLocalDateTime = localDateTime.format(dateTimeFormatterForRandom);
+
+    public static Users getUser(UserTypes userTypes){
+        Users user = UserLoader.findUserByType(userTypes);
+        user.setFirstName(String.format(user.getFirstName(), formattedLocalDateTime));
+        user.setLastName(String.format(user.getLastName(), formattedLocalDateTime));
+        user.setUsername(String.format(user.getUsername(), formattedLocalDateTime));
+        return user;
     }
 
-    public Users() {
-        this.username = "";
-        this.password = "";
+    public static Users getBlankCredential() {
+        Users users = new Users();
+        users.setUsername("");
+        users.setPassword("");
+        return users;
     }
 
-    public String getUsername() {
-        return username;
+    public static Users getUpdatedUser(UserTypes userTypes) {
+        String strUpdated = " updated";
+        Users user = getUser(userTypes);
+        user.firstName = user.firstName + strUpdated;
+        user.lastName = user.lastName + strUpdated;
+        user.address = user.address + strUpdated;
+        user.city = user.city + strUpdated;
+        user.state = user.state + strUpdated;
+        return user;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Users getDefaultUser(){
-        return new Users("test", "test01");
-    }
-
-    @Override
-    public String toString() {
-        return String.format("%s - %s", username, password);
-    }
-
-    @Override
-    public Users clone() {
-        try {
-            return (Users) super.clone();
-        } catch (CloneNotSupportedException ex) {
-            return null;
-        }
-    }
 }

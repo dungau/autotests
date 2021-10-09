@@ -1,41 +1,18 @@
 package utils;
 
 import static enums.OsTypes.*;
+
+import io.qameta.allure.Link;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.FindBy;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Utils {
-
-    protected static WebDriver driver;
-    private static WebDriverWait wait;
-
-    public static void navigateToURL(String strAddress)
-    {
-        System.out.println("Navigate to the " + strAddress);
-        try{
-            driver.get(strAddress); //navigate to URL
-            driver.manage().window().maximize(); //maximize the window
-        }catch(Exception ex){System.out.println("Can't navigate to an address URL: " + strAddress + ". " + ex.getMessage());}
-    }
-
-    //wait for an element to be found
-    public static WebElement waitElement(By strLocation) throws Exception
-    {
-        System.out.println("Waiting for the element with locator " + strLocation + " is present.");
-        try{
-            WebElement e = wait.until(ExpectedConditions.visibilityOfElementLocated(strLocation));
-            return e;
-        }
-        catch(Exception ex){
-            System.out.println("Not able to find the element with locator " + strLocation + ". " + ex.getMessage());
-            return null;
-        }
-    }
 
     @Step("click on an element")
     public static void clickButton(WebElement element)
@@ -62,5 +39,40 @@ public class Utils {
                 element.sendKeys(Keys.DELETE);
             }
         }
+    }
+
+    @Step("Verify the element is displayed")
+    public static boolean isElementDisplayed(WebElement element) {
+        return element.isDisplayed();
+    }
+
+    @Step("Verify the element content")
+    public static String verifyElementContent(WebElement element, String strData) {
+        String errorMessage = "";
+        boolean elementDisplayed = isElementDisplayed(element);
+        if(elementDisplayed){
+            String actualContent = element.getText();
+                if (!element.getText().equals(strData)) {
+                    errorMessage = "The field value is incorrect, expected is " + strData +
+                            " , actual is " + actualContent + ".";
+                }
+        }else{
+            errorMessage = "The field does not exist.";
+        }
+        return errorMessage;
+    }
+
+    @Step("Get element content")
+    public static String getElementContent(WebElement element) {
+        return element.getText();
+    }
+
+    @Step("Get list elements content")
+    public static List<String> getListElementsContent(List<WebElement> elements) {
+        List<String> errorMessages = new ArrayList<>();
+        for (WebElement e: elements) {
+            errorMessages.add(getElementContent(e));
+        }
+        return errorMessages;
     }
 }

@@ -6,7 +6,9 @@
     </listeners>
     <test name="Web UI Tests">
         <classes>
+            <class name="pages.RegisterUserPageTest" />
             <class name="pages.LoginTest" />
+            <class name="pages.UpdateContactInfoPageTest" />
         </classes>
     </test>
 </suite>

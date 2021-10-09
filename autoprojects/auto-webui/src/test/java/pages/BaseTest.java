@@ -1,11 +1,13 @@
 package pages;
 
 import logs.BaseLog;
+import logs.BaseTestListener;
 import org.openqa.selenium.WebDriver;
 import static utils.PropertyLoader.*;
 
 import org.testng.annotations.*;
 
+@Listeners(BaseTestListener.class)
 public class BaseTest {
     protected static WebDriver driver;
 
@@ -26,6 +28,7 @@ public class BaseTest {
     @BeforeClass
     public void beforeClass() {
         BaseLog.info("Test class start");
+        driver = getDriver();
         driver.get(getDomain());
         driver.manage().window().maximize(); //maximize the window
     }
