@@ -2,12 +2,10 @@ package utils;
 
 import static enums.OsTypes.*;
 
-import io.qameta.allure.Link;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,5 +72,10 @@ public class Utils {
             errorMessages.add(getElementContent(e));
         }
         return errorMessages;
+    }
+
+    @Step("Get parentElement")
+    public static WebElement getParent(WebElement elem) {
+        return elem.findElement(By.xpath("./.."));
     }
 }
