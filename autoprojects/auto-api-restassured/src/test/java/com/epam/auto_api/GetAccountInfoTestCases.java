@@ -10,5 +10,6 @@ public class GetAccountInfoTestCases extends BaseTestCases {
 	public void verifyGetAccountIdSuccessfull() {
 		Response response = getResponseAndUpdateAccountInfo();
 		Assert.assertEquals(response.statusCode(), 200);
+		
 	}
 }

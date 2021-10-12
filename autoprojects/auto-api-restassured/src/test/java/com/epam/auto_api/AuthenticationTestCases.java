@@ -11,15 +11,16 @@ import org.testng.annotations.Test;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import util.Configs;
 
 public class AuthenticationTestCases extends BaseTestCases {
 	private static final String LOGIN_PAGE = "/parabank/login.htm";
 
 	@Test()
 	public void verifyValidAccLogin() {
-
 		Response response = RestAssured.given().log().all().contentType(ContentType.URLENC.withCharset("UTF-8"))
-				.formParam("username", "test01").formParam("password", "test01").post(LOGIN_PAGE);
+				.formParam("username", Configs.getAsString("login.username"))
+				.formParam("password", Configs.getAsString("login.password")).post(LOGIN_PAGE);
 
 		String header = response.getHeader("Location");
 		String[] pairLocationAndSessionId = StringUtils.split(header, ";");

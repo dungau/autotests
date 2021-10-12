@@ -17,7 +17,7 @@
 
    <test name = "TransferMoneyTestCase">
       <classes>
-         <class name = "com.epam.auto_api.TransferMoneyTestCase" />
+         <class name = "com.epam.auto_api.TransferMoneyTestCases" />
       </classes>
    </test>
 
