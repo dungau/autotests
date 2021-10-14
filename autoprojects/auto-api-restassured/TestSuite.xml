@@ -1,0 +1,24 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name = "SmokeTest">
+
+   <test name = "AuthenticationTestCases">
+      <classes>
+         <class name = "com.epam.auto_api.AuthenticationTestCases" />
+      </classes>
+   </test>
+   
+   <test name = "GetAccountInfoTestCases">
+      <classes>
+         <class name = "com.epam.auto_api.GetAccountInfoTestCases" />
+      </classes>
+   </test>
+
+   <test name = "TransferMoneyTestCase">
+      <classes>
+         <class name = "com.epam.auto_api.TransferMoneyTestCases" />
+      </classes>
+   </test>
+
+</suite>
