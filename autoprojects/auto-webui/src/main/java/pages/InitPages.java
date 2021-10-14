@@ -7,4 +7,5 @@ public class InitPages {
     public static RegisterUserPage registerUserPage;
     public static CommonElements commonElements;
     public static UpdateContactInfoPage updateContactInfoPage;
+    public static VerifyAccountOverviews verifyAccountOverviews;
 }

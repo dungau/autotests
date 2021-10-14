@@ -2,13 +2,15 @@ package utils;
 
 import static enums.OsTypes.*;
 
-import io.qameta.allure.Link;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +20,26 @@ public class Utils {
     public static void clickButton(WebElement element)
     {
         element.click();
+    }
+    private static WebDriverWait wait = null;
+
+    public static void setupWait(WebDriverWait wait) {
+        Utils.wait = wait;
+    }
+    public static void setupWait(WebDriver driver) {
+        Utils.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+    }
+    public static WebDriverWait getWait(WebDriverWait wait) {
+        return Utils.wait;
+    }
+    public static void /* just wait, and do nothing! */ waitUntilXPathToBeMoreThan(String xPath, int numOfElem) {
+        Utils.wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.xpath(xPath), numOfElem));
+    }
+    public static void /* just wait, and do nothing! */ waitUntilElementClickable(WebElement elem) {
+        Utils.wait.until(ExpectedConditions.elementToBeClickable(elem));
+    }
+    public static void /* just wait, and do nothing! */ waitUntilElementVisible(WebElement elem) {
+        Utils.wait.until(ExpectedConditions.visibilityOf(elem));
     }
 
     @Step("enter text to an element")
@@ -74,5 +96,10 @@ public class Utils {
             errorMessages.add(getElementContent(e));
         }
         return errorMessages;
+    }
+
+    @Step("Get parentElement")
+    public static WebElement getParent(WebElement elem) {
+        return elem.findElement(By.xpath("./.."));
     }
 }
