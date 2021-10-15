@@ -13,7 +13,7 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import util.Configs;
 
-public class AuthenticationTestCases extends BaseTestCases {
+class AuthenticationTestCases extends BaseTestCases {
 	private static final String LOGIN_PAGE = "/parabank/login.htm";
 
 	@Test()

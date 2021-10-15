@@ -11,7 +11,7 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import util.Configs;
 
-public class BaseTestCases {
+class BaseTestCases {
 	private static final String GET_ACCOUNT_INFO_PAGE = "/parabank/services_proxy/bank/customers/%s/accounts";
 	protected static String sessionId;
 	protected static String customerId;

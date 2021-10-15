@@ -7,7 +7,7 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import util.Configs;
 
-public class TransferMoneyTestCases extends BaseTestCases {
+class TransferMoneyTestCases extends BaseTestCases {
 	private static final String TRANSFER_PAGE = "/parabank/services_proxy/bank/transfer";
 
 	@Test
