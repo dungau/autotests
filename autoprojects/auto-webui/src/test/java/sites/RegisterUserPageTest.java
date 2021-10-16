@@ -15,7 +15,7 @@ import static pages.InitPages.registerUserPage;
 import static utils.Utils.clickButton;
 import static utils.Utils.getElementContent;
 
-public class RegisterUserPageTest extends BaseTest {
+public class RegisterUserPageTest extends pages.BaseTest {
 
     private final Users createdUser = Users.getUser(UserTypes.CREATED_USER);
 

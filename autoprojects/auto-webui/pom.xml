@@ -72,6 +72,7 @@
         <selenium>4.0.0-rc-1</selenium>
         <webdrivermanager>5.0.3</webdrivermanager>
         <log4j-to-slf4j>2.14.1</log4j-to-slf4j>
+        <cucumber>7.0.0</cucumber>
     </properties>
 
     <dependencies>
@@ -96,6 +97,18 @@
             <artifactId>lombok</artifactId>
             <version>RELEASE</version>
             <scope>compile</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${cucumber}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-testng -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>${cucumber}</version>
         </dependency>
     </dependencies>
 

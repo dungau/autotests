@@ -6,10 +6,11 @@
     </listeners>
     <test name="Web UI Tests">
         <classes>
-            <class name="pages.RegisterUserPageTest"/>
-            <class name="pages.LoginTest"/>
-            <class name="pages.UpdateContactInfoPageTest" />
-            <class name="pages.VerifyAccountOverviewsTest"/>
+<!--            <class name="pages.RegisterUserPageTest"/>-->
+<!--            <class name="pages.LoginTest"/>-->
+<!--            <class name="pages.UpdateContactInfoPageTest" />-->
+<!--            <class name="pages.VerifyAccountOverviewsTest"/>-->
+            <class name="pages.BaseRunner"/>
         </classes>
     </test>
 </suite>

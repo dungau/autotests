@@ -31,23 +31,31 @@ public class LoginPage extends BasePage {
     @FindBy(className = "error")
     private WebElement lblError;
 
-    @Step("Login with valid credentials")
-    public void loginWithValidCredentials(Users user) {
+    @Step("Enter user credential")
+    public void enterUserCredential(Users user) {
         enterText(txtUsername, user.getUsername());
         enterText(txtPassword, user.getPassword());
+    }
+
+    @Step("Click Login button")
+    public void clickLoginButton(){
         clickButton(btnLogin);
     }
 
-    @Step("Login with invalid credentials")
-    public String loginWithInvalidCredential(Users user) {
-        enterText(txtUsername, user.getUsername());
-        enterText(txtPassword, user.getPassword());
-        clickButton(btnLogin);
+    @Step("Get error message")
+    public String getErrorMessage() {
         return lblError.getText();
     }
 
     @Step("Verify Login button is displayed")
     public boolean verifyLoginButtonIsDisplay() {
         return isElementDisplayed(btnLogin);
+    }
+
+    public String loginWithInvalidCredential(Users user) {
+        return "";
+    }
+
+    public void loginWithValidCredentials(Users user) {
     }
 }

@@ -1,48 +1,48 @@
-package pages;
+package steps;
 
 import entities.Users;
 import enums.UserTypes;
-import io.qameta.allure.Description;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.testng.util.Strings;
+import pages.BaseTest;
+import pages.UpdateContactInfoPage;
 import utils.CommonElements;
-
-import static utils.Utils.clickButton;
 
 import java.util.List;
 
-import static org.testng.Assert.*;
-import static pages.InitPages.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
+import static pages.InitPages.commonElements;
+import static pages.InitPages.updateContactInfoPage;
 import static utils.Utils.getElementContent;
 
-public class UpdateContactInfoPageTest extends BaseTest {
-
+public class UpdateContactInfoPageDefinitions extends BaseTest {
     private final Users user = Users.getUser(UserTypes.LOGIN_USER);
+    CommonElements commonElements = pageObjectManager.getCommonElements();
+    UpdateContactInfoPage updateContactInfoPage = pageObjectManager.getUpdateContactInfoPage();
 
-    @BeforeMethod
-    public void init() {
-        loginPage = new LoginPage(driver);
-        commonElements = new CommonElements(driver);
-        registerUserPage = new RegisterUserPage(driver);
+    @And("Click update contact info link")
+    public void clickUpdateContactInfoLink() {
+        commonElements.clickUpdateContactInfoLink();
     }
 
-    @Description("Verify the logged user contact info")
-    @Test(priority=1)
-    public void verifyLoggedUserContactInfo() {
-        loginPage.loginWithValidCredentials(user);
-        clickButton(commonElements.linkUpdateContactInfo);
+    @Then("User see all information are matched")
+    public void userInformationAreMatched() {
         List<String> results = updateContactInfoPage.verifyTheContactInfo(user);
         for (String res: results) {
             assertTrue(Strings.isNotNullAndNotEmpty(res), res);
         }
     }
 
-    @Description("Update with blank value")
-    @Test(priority=3)
-    public void userCannotUpdateInfoWithBlankValue() {
-        clickButton(commonElements.linkUpdateContactInfo);
+    @And("Update contact info with blank data")
+    public void updateContactInfoWithBlankData(){
         updateContactInfoPage.updateWithBlankValue();
+    }
+
+    @Then("User see list validation error messages")
+    public void userSeeListErrorMessages() {
         List<String> lstErrors = updateContactInfoPage.getListErrorMessages();
         assertEquals(lstErrors.get(0), "First name is required.",
                 "Incorrect error message for First Name");
@@ -58,19 +58,20 @@ public class UpdateContactInfoPageTest extends BaseTest {
                 "Incorrect error message for Zip Code");
     }
 
-    @Description("Update with valid value")
-    @Test(priority=2)
-    public void userCanUpdateInfoWithValidValue() {
+    @And("Update contact info with valid data")
+    public void updateContactInfoWithValidData() {
         Users updatedUser = Users.getUpdatedUser(UserTypes.UPDATED_USER);
         updateContactInfoPage.updateWithValidData(updatedUser);
-        assertEquals(getElementContent(commonElements.lblTitle), "Profile Updated", "Update failed");
     }
 
-    @Description("Revert user contact info")
-    @Test(priority=4)
-    public void revertUserContactInfo() {
-        clickButton(commonElements.linkUpdateContactInfo);
+    @And("Revert contact info with origin data")
+    public void revertContactInfoWithOriginData() {
         updateContactInfoPage.updateWithValidData(user);
-        assertEquals(getElementContent(commonElements.lblTitle), "Profile Updated", "Update failed");
     }
+
+    @Then("User see the update successfully message")
+    public void userSeeUpdateSuccessfullyMessage() {
+        assertEquals(commonElements.getMessage(), "Profile Updated", "Update failed");
+    }
+
 }
