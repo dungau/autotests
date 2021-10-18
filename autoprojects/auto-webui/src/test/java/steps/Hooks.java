@@ -1,4 +1,4 @@
-package core;
+package steps;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -23,7 +23,7 @@ public class Hooks {
     @Before
     public void beforeScenario() {
         BaseLog.info("Scenario start");
-        driver = PropertyLoader.getDriver();;
+        driver = PropertyLoader.getDriver();
         driver.manage().window().maximize(); //maximize the window
         driver.get(getDomain());
     }

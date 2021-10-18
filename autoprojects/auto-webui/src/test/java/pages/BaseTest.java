@@ -1,6 +1,6 @@
 package pages;
 
-import core.Hooks;
+import steps.Hooks;
 import org.openqa.selenium.WebDriver;
 
 public class BaseTest {
