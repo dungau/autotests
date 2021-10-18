@@ -25,7 +25,7 @@
         <jetty.version>9.4.12.RC2</jetty.version>
         <logback>1.2.6</logback>
         <testng>7.4.0</testng>
-        <assertj>3.20.2</assertj>
+        <assertj>3.21.0</assertj>
         <apache-commons>3.12.0</apache-commons>
         <coteafs>3.4.0</coteafs>
     </properties>
@@ -107,8 +107,8 @@
                 <version>${maven.compiler.version}</version>
                 <configuration>
                     <encoding>UTF-8</encoding>
-                    <source>14</source>
-                    <target>14</target>
+                    <source>15</source>
+                    <target>15</target>
                     <compilerArgument>-Werror</compilerArgument>
                 </configuration>
             </plugin>
