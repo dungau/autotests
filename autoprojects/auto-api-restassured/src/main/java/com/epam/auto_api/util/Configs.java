@@ -1,4 +1,4 @@
-package util;
+package com.epam.auto_api.util;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
