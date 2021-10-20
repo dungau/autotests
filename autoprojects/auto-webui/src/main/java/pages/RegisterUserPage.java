@@ -105,30 +105,12 @@ public class RegisterUserPage extends BasePage {
     @FindBy(id = "repeatedPassword.errors")
     private WebElement lblConfirmPassword;
 
-    //Locating the title
-    @FindBy(className = "title")
-    private static WebElement lblTitle;
-
     @Step("Click register button")
     public void clickRegisterButton() {
         clickButton(btnRegister);
     }
 
-    @Step("Fill in and register user with valid data")
-    public void registerWithValidData(Users user){
-        enterText(txtFirstName, user.getFirstName());
-        enterText(txtLastName, user.getLastName());
-        enterText(txtAddress, user.getAddress());
-        enterText(txtCity, user.getCity());
-        enterText(txtState, user.getState());
-        enterText(txtZipCode, user.getZipCode());
-        enterText(txtPhoneNumber, user.getPhoneNumber());
-        enterText(txtSsn, user.getSsn());
-        enterText(txtUsername, user.getUsername());
-        enterText(txtPassword, user.getPassword());
-        enterText(txtConfirmPassword, user.getPassword());
-    }
-
+    @Step("Get list errors message")
     public List<String> getListErrorMessages() {
         List<WebElement> elements = new ArrayList<>();
         elements.add(lblFirstName);
@@ -164,25 +146,5 @@ public class RegisterUserPage extends BasePage {
     @Step("Get inconsistent passwords messages")
     public String getInconsistentPwdMessage() {
         return lblConfirmPassword.getText();
-    }
-
-    @Step("Register with password and password confirmation do not match")
-    public String registerWithPasswordsDoNotMatch(Users user){
-        enterText(txtFirstName, user.getFirstName());
-        enterText(txtLastName, user.getLastName());
-        enterText(txtAddress, user.getAddress());
-        enterText(txtCity, user.getCity());
-        enterText(txtState, user.getState());
-        enterText(txtZipCode, user.getZipCode());
-        enterText(txtPhoneNumber, user.getPhoneNumber());
-        enterText(txtSsn, user.getSsn());
-        enterText(txtUsername, user.getUsername());
-        enterText(txtPassword, user.getPassword());
-        enterText(txtConfirmPassword, user.getUsername()+user.getPassword());
-        clickButton(btnRegister);
-        return lblConfirmPassword.getText();
-    }
-
-    public void registerWithBlankValue() {
     }
 }

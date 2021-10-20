@@ -48,9 +48,17 @@ public class Users {
         return user;
     }
 
-    public static Users getBlankCredential() {
+    public static Users getBlankData() {
         Users users = new Users();
         users.setUsername("");
+        users.setPassword("");
+        users.setFirstName("");
+        users.setLastName("");
+        users.setAddress("");
+        users.setCity("");
+        users.setState("");
+        users.setZipCode("");
+        users.setPhoneNumber("");
         users.setPassword("");
         return users;
     }

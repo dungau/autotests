@@ -73,8 +73,8 @@ public class UpdateContactInfoPage extends BasePage {
     @FindBy(id = "//*[@name='customer.address.zipCode']/parent::td/following-sibling::td//span")
     private WebElement lblZipCode;
 
-    @Step("Fill in and update user with valid data")
-    public void updateWithValidData(Users user) {
+    @Step("Fill in and update user with new data")
+    public void updateUserContactInfo(Users user) {
         enterText(txtFirstName, user.getFirstName());
         enterText(txtLastName, user.getLastName());
         enterText(txtAddress, user.getAddress());
@@ -83,17 +83,6 @@ public class UpdateContactInfoPage extends BasePage {
         enterText(txtZipCode, user.getZipCode());
         enterText(txtPhoneNumber, user.getPhoneNumber());
         clickButton(btnUpdate);
-    }
-
-    @Step("Update with blank value")
-    public void updateWithBlankValue() {
-        enterText(txtFirstName, "");
-        enterText(txtLastName, "");
-        enterText(txtAddress, "");
-        enterText(txtCity, "");
-        enterText(txtState, "");
-        enterText(txtZipCode, "");
-        enterText(txtPhoneNumber, "");
     }
 
     @Step("Get list errors message")

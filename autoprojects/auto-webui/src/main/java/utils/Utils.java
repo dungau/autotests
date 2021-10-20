@@ -26,18 +26,23 @@ public class Utils {
     public static void setupWait(WebDriverWait wait) {
         Utils.wait = wait;
     }
+
     public static void setupWait(WebDriver driver) {
         Utils.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
     }
+
     public static WebDriverWait getWait(WebDriverWait wait) {
         return Utils.wait;
     }
+
     public static void /* just wait, and do nothing! */ waitUntilXPathToBeMoreThan(String xPath, int numOfElem) {
         Utils.wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.xpath(xPath), numOfElem));
     }
+
     public static void /* just wait, and do nothing! */ waitUntilElementClickable(WebElement elem) {
         Utils.wait.until(ExpectedConditions.elementToBeClickable(elem));
     }
+
     public static void /* just wait, and do nothing! */ waitUntilElementVisible(WebElement elem) {
         Utils.wait.until(ExpectedConditions.visibilityOf(elem));
     }

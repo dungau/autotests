@@ -51,11 +51,4 @@ public class LoginPage extends BasePage {
     public boolean verifyLoginButtonIsDisplay() {
         return isElementDisplayed(btnLogin);
     }
-
-    public String loginWithInvalidCredential(Users user) {
-        return "";
-    }
-
-    public void loginWithValidCredentials(Users user) {
-    }
 }

@@ -43,7 +43,7 @@ public class LoginPageDefinitions extends BaseTest {
 
     @When("^User enter blank credential")
     public void userEnterBlankCredential() {
-        loginUser = Users.getBlankCredential();
+        loginUser = Users.getBlankData();
         loginPage.enterUserCredential(loginUser);
     }
 

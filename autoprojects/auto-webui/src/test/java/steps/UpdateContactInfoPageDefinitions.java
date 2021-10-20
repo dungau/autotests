@@ -4,7 +4,6 @@ import entities.Users;
 import enums.UserTypes;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 import org.testng.util.Strings;
 import pages.BaseTest;
 import pages.UpdateContactInfoPage;
@@ -14,9 +13,6 @@ import java.util.List;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
-import static pages.InitPages.commonElements;
-import static pages.InitPages.updateContactInfoPage;
-import static utils.Utils.getElementContent;
 
 public class UpdateContactInfoPageDefinitions extends BaseTest {
     private final Users user = Users.getUser(UserTypes.LOGIN_USER);
@@ -38,7 +34,8 @@ public class UpdateContactInfoPageDefinitions extends BaseTest {
 
     @And("Update contact info with blank data")
     public void updateContactInfoWithBlankData(){
-        updateContactInfoPage.updateWithBlankValue();
+        Users updatedUser = Users.getBlankData();
+        updateContactInfoPage.updateUserContactInfo(updatedUser);
     }
 
     @Then("User see list validation error messages")
@@ -61,12 +58,12 @@ public class UpdateContactInfoPageDefinitions extends BaseTest {
     @And("Update contact info with valid data")
     public void updateContactInfoWithValidData() {
         Users updatedUser = Users.getUpdatedUser(UserTypes.UPDATED_USER);
-        updateContactInfoPage.updateWithValidData(updatedUser);
+        updateContactInfoPage.updateUserContactInfo(updatedUser);
     }
 
     @And("Revert contact info with origin data")
     public void revertContactInfoWithOriginData() {
-        updateContactInfoPage.updateWithValidData(user);
+        updateContactInfoPage.updateUserContactInfo(user);
     }
 
     @Then("User see the update successfully message")
