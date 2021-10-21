@@ -1,6 +1,7 @@
 package utils;
 
 import static enums.OsTypes.*;
+import static utils.PropertyLoader.getTimeOutInSeconds;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
@@ -28,7 +29,7 @@ public class Utils {
     }
 
     public static void setupWait(WebDriver driver) {
-        Utils.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        Utils.wait = new WebDriverWait(driver, Duration.ofSeconds(getTimeOutInSeconds()));
     }
 
     public static WebDriverWait getWait(WebDriverWait wait) {
@@ -105,6 +106,14 @@ public class Utils {
             errorMessages.add(getElementContent(e));
         }
         return errorMessages;
+    }
+
+    public static void waitPageLoad() {
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            System.out.println(e);
+        }
     }
 
     @Step("Get parentElement")

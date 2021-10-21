@@ -5,6 +5,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,31 +51,32 @@ public class UpdateContactInfoPage extends BasePage {
     private WebElement btnUpdate;
 
     //Locating the first name error message
-    @FindBy(id = "//*[@name='customer.firstName']/parent::td/following-sibling::td//span")
+    @FindBy(xpath = "//*[@name='customer.firstName']/parent::td/following-sibling::td/span")
     private WebElement lblFirstName;
 
     //Locating the last name error message
-    @FindBy(id = "//*[@name='customer.lastName']/parent::td/following-sibling::td//span")
+    @FindBy(xpath = "//*[@name='customer.lastName']/parent::td/following-sibling::td/span")
     private WebElement lblLastName;
 
     //Locating the address error message
-    @FindBy(id = "//*[@name='customer.address.street']/parent::td/following-sibling::td//span")
+    @FindBy(xpath = "//*[@name='customer.address.street']/parent::td/following-sibling::td/span")
     private WebElement lblAddress;
 
     //Locating the city error message
-    @FindBy(id = "//*[@name='customer.address.city']/parent::td/following-sibling::td//span")
+    @FindBy(xpath = "//*[@name='customer.address.city']/parent::td/following-sibling::td/span")
     private WebElement lblCity;
 
     //Locating the state error message
-    @FindBy(id = "//*[@name='customer.address.state']/parent::td/following-sibling::td//span")
+    @FindBy(xpath = "//*[@name='customer.address.state']/parent::td/following-sibling::td/span")
     private WebElement lblState;
 
     //Locating the zip code error message
-    @FindBy(id = "//*[@name='customer.address.zipCode']/parent::td/following-sibling::td//span")
+    @FindBy(xpath = "//*[@name='customer.address.zipCode']/parent::td/following-sibling::td/span")
     private WebElement lblZipCode;
 
     @Step("Fill in and update user with new data")
     public void updateUserContactInfo(Users user) {
+        Utils.waitPageLoad();
         enterText(txtFirstName, user.getFirstName());
         enterText(txtLastName, user.getLastName());
         enterText(txtAddress, user.getAddress());

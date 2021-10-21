@@ -48,6 +48,7 @@ public class CommonElements extends BasePage {
 
     @Step("Get message")
     public String getMessage() {
+        Utils.waitPageLoad();
         return getElementContent(lblTitle);
     }
 }
