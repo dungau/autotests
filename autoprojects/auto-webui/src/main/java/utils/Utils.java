@@ -43,6 +43,10 @@ public class Utils {
         Utils.wait.until(ExpectedConditions.elementToBeClickable(elem));
     }
 
+    public static void /* just wait, and do nothing! */ waitUntilElementClickable(String xPath) {
+        Utils.wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xPath)));
+    }
+
     public static void /* just wait, and do nothing! */ waitUntilElementVisible(WebElement elem) {
         Utils.wait.until(ExpectedConditions.visibilityOf(elem));
     }

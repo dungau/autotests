@@ -10,16 +10,17 @@ import utils.Utils;
 
 import static utils.Utils.*;
 
-public class VerifyAccountOverviews extends BasePage {
+public class VerifyAccountOverviewsPage extends BasePage {
 
-    public VerifyAccountOverviews(WebDriver driver){
+    public VerifyAccountOverviewsPage(WebDriver driver){
         super(driver);
     }
 
     @FindBy(xpath = "//*[@id='leftPanel']/ul/li[1]/a")
     private WebElement lnkOpenNewAccount;
 
-    @FindBy(xpath = "//*[@id='rightPanel']/div/div/form/div/input[@type='submit' and not(@disabled)]")
+    private static final String btnOpenNewAccountXPath = "//*[@id='rightPanel']/div/div/form/div/input[@type='submit']";
+    @FindBy(xpath = VerifyAccountOverviewsPage.btnOpenNewAccountXPath)
     private WebElement btnOpenNewAccount;
 
     @FindBy(xpath = "//*[@id='fromAccountId']")
@@ -45,7 +46,7 @@ public class VerifyAccountOverviews extends BasePage {
     @Step("User (logged in) click on 'Open New Account' button on 'Open New Account' page to open new account")
     public String clickOnOpenNewAccountButton() {
         // ajax/SPA
-        Utils.waitUntilElementClickable(btnOpenNewAccount);
+        Utils.waitUntilElementClickable(VerifyAccountOverviewsPage.btnOpenNewAccountXPath);
         clickButton(btnOpenNewAccount);
         Utils.waitUntilElementVisible(lnkAccountNumber);
         String newId = lnkAccountNumber.getText();

@@ -26,8 +26,8 @@ public class PageObjectManager {
         return new UpdateContactInfoPage(driver);
     }
 
-    public VerifyAccountOverviews getVerifyAccountOverviews() {
-        return new VerifyAccountOverviews(driver);
+    public VerifyAccountOverviewsPage getVerifyAccountOverviews() {
+        return new VerifyAccountOverviewsPage(driver);
     }
 
 }
